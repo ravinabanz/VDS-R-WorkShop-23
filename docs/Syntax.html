@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ravina Banze">
+
+<title>R Workshop VDS 2023 Website - Syntax</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Workshop VDS 2023 Website</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./Syntax.html" aria-current="page">Syntax</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Survey.html">Survey</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Visualizations.html">Visualizations</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Syntax</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Ravina Banze </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<p>Let’s start with the basics</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a comment. Comments in R start with a "#" symbol.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign a value to a variable</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform some basic arithmetic operations</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the value of a variable to the console</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y<span class="sc">+</span>z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(a <span class="sc">+</span> b)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Call the function and print the result</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">add_two</span>(<span class="dv">5</span>, <span class="dv">3</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a for loop</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define an if statement</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> y) {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"x is greater than y"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"x is not greater than y"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "x is not greater than y"</code></pre>
+</div>
+</div>
+<p>Comments: In R, comments are indicated by a “#” symbol. Anything following a “#” symbol on a line is treated as a comment and is ignored by the R interpreter.</p>
+<p>Data types: R has a number of built-in data types, including character strings, integers, and floating-point numbers. R also has a special data type called a “vector” that can be used to store a sequence of values.</p>
+<p>Variables: Variables are used to store values in R. Variables are memory locations that store values during the execution of a computer program. To define a variable in R, we use the reverse-arrow(&lt;-) operator.</p>
+<p>Operators: R has a number of operators that can be used to perform calculations and compare values. These include arithmetic operators such as “+”, “-”, “*”, and”/“, and logical operators such as”==” (equal to) and “!=” (not equal to).</p>
+<p>Functions: Functions are used to perform specific tasks in R. To call a function, you use the function name followed by parentheses.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(pacman)) <span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"hotel_bookings.csv"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         hotel is_canceled lead_time arrival_date_year arrival_date_month
+1 Resort Hotel           0       342              2015               July
+2 Resort Hotel           0       737              2015               July
+3 Resort Hotel           0         7              2015               July
+4 Resort Hotel           0        13              2015               July
+5 Resort Hotel           0        14              2015               July
+6 Resort Hotel           0        14              2015               July
+  arrival_date_week_number arrival_date_day_of_month stays_in_weekend_nights
+1                       27                         1                       0
+2                       27                         1                       0
+3                       27                         1                       0
+4                       27                         1                       0
+5                       27                         1                       0
+6                       27                         1                       0
+  stays_in_week_nights adults children babies meal country market_segment
+1                    0      2        0      0   BB     PRT         Direct
+2                    0      2        0      0   BB     PRT         Direct
+3                    1      1        0      0   BB     GBR         Direct
+4                    1      1        0      0   BB     GBR      Corporate
+5                    2      2        0      0   BB     GBR      Online TA
+6                    2      2        0      0   BB     GBR      Online TA
+  distribution_channel is_repeated_guest previous_cancellations
+1               Direct                 0                      0
+2               Direct                 0                      0
+3               Direct                 0                      0
+4            Corporate                 0                      0
+5                TA/TO                 0                      0
+6                TA/TO                 0                      0
+  previous_bookings_not_canceled reserved_room_type assigned_room_type
+1                              0                  C                  C
+2                              0                  C                  C
+3                              0                  A                  C
+4                              0                  A                  A
+5                              0                  A                  A
+6                              0                  A                  A
+  booking_changes deposit_type agent company days_in_waiting_list customer_type
+1               3   No Deposit  NULL    NULL                    0     Transient
+2               4   No Deposit  NULL    NULL                    0     Transient
+3               0   No Deposit  NULL    NULL                    0     Transient
+4               0   No Deposit   304    NULL                    0     Transient
+5               0   No Deposit   240    NULL                    0     Transient
+6               0   No Deposit   240    NULL                    0     Transient
+  adr required_car_parking_spaces total_of_special_requests reservation_status
+1   0                           0                         0          Check-Out
+2   0                           0                         0          Check-Out
+3  75                           0                         0          Check-Out
+4  75                           0                         0          Check-Out
+5  98                           0                         1          Check-Out
+6  98                           0                         1          Check-Out
+  reservation_status_date
+1              2015-07-01
+2              2015-07-01
+3              2015-07-02
+4              2015-07-02
+5              2015-07-03
+6              2015-07-03</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    hotel            is_canceled       lead_time   arrival_date_year
+ Length:119390      Min.   :0.0000   Min.   :  0   Min.   :2015     
+ Class :character   1st Qu.:0.0000   1st Qu.: 18   1st Qu.:2016     
+ Mode  :character   Median :0.0000   Median : 69   Median :2016     
+                    Mean   :0.3704   Mean   :104   Mean   :2016     
+                    3rd Qu.:1.0000   3rd Qu.:160   3rd Qu.:2017     
+                    Max.   :1.0000   Max.   :737   Max.   :2017     
+                                                                    
+ arrival_date_month arrival_date_week_number arrival_date_day_of_month
+ Length:119390      Min.   : 1.00            Min.   : 1.0             
+ Class :character   1st Qu.:16.00            1st Qu.: 8.0             
+ Mode  :character   Median :28.00            Median :16.0             
+                    Mean   :27.17            Mean   :15.8             
+                    3rd Qu.:38.00            3rd Qu.:23.0             
+                    Max.   :53.00            Max.   :31.0             
+                                                                      
+ stays_in_weekend_nights stays_in_week_nights     adults      
+ Min.   : 0.0000         Min.   : 0.0         Min.   : 0.000  
+ 1st Qu.: 0.0000         1st Qu.: 1.0         1st Qu.: 2.000  
+ Median : 1.0000         Median : 2.0         Median : 2.000  
+ Mean   : 0.9276         Mean   : 2.5         Mean   : 1.856  
+ 3rd Qu.: 2.0000         3rd Qu.: 3.0         3rd Qu.: 2.000  
+ Max.   :19.0000         Max.   :50.0         Max.   :55.000  
+                                                              
+    children           babies              meal             country         
+ Min.   : 0.0000   Min.   : 0.000000   Length:119390      Length:119390     
+ 1st Qu.: 0.0000   1st Qu.: 0.000000   Class :character   Class :character  
+ Median : 0.0000   Median : 0.000000   Mode  :character   Mode  :character  
+ Mean   : 0.1039   Mean   : 0.007949                                        
+ 3rd Qu.: 0.0000   3rd Qu.: 0.000000                                        
+ Max.   :10.0000   Max.   :10.000000                                        
+ NA's   :4                                                                  
+ market_segment     distribution_channel is_repeated_guest
+ Length:119390      Length:119390        Min.   :0.00000  
+ Class :character   Class :character     1st Qu.:0.00000  
+ Mode  :character   Mode  :character     Median :0.00000  
+                                         Mean   :0.03191  
+                                         3rd Qu.:0.00000  
+                                         Max.   :1.00000  
+                                                          
+ previous_cancellations previous_bookings_not_canceled reserved_room_type
+ Min.   : 0.00000       Min.   : 0.0000                Length:119390     
+ 1st Qu.: 0.00000       1st Qu.: 0.0000                Class :character  
+ Median : 0.00000       Median : 0.0000                Mode  :character  
+ Mean   : 0.08712       Mean   : 0.1371                                  
+ 3rd Qu.: 0.00000       3rd Qu.: 0.0000                                  
+ Max.   :26.00000       Max.   :72.0000                                  
+                                                                         
+ assigned_room_type booking_changes   deposit_type          agent          
+ Length:119390      Min.   : 0.0000   Length:119390      Length:119390     
+ Class :character   1st Qu.: 0.0000   Class :character   Class :character  
+ Mode  :character   Median : 0.0000   Mode  :character   Mode  :character  
+                    Mean   : 0.2211                                        
+                    3rd Qu.: 0.0000                                        
+                    Max.   :21.0000                                        
+                                                                           
+   company          days_in_waiting_list customer_type           adr         
+ Length:119390      Min.   :  0.000      Length:119390      Min.   :  -6.38  
+ Class :character   1st Qu.:  0.000      Class :character   1st Qu.:  69.29  
+ Mode  :character   Median :  0.000      Mode  :character   Median :  94.58  
+                    Mean   :  2.321                         Mean   : 101.83  
+                    3rd Qu.:  0.000                         3rd Qu.: 126.00  
+                    Max.   :391.000                         Max.   :5400.00  
+                                                                             
+ required_car_parking_spaces total_of_special_requests reservation_status
+ Min.   :0.00000             Min.   :0.0000            Length:119390     
+ 1st Qu.:0.00000             1st Qu.:0.0000            Class :character  
+ Median :0.00000             Median :0.0000            Mode  :character  
+ Mean   :0.06252             Mean   :0.5714                              
+ 3rd Qu.:0.00000             3rd Qu.:1.0000                              
+ Max.   :8.00000             Max.   :5.0000                              
+                                                                         
+ reservation_status_date
+ Length:119390          
+ Class :character       
+ Mode  :character       
+                        
+                        
+                        
+                        </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   119390 obs. of  32 variables:
+ $ hotel                         : chr  "Resort Hotel" "Resort Hotel" "Resort Hotel" "Resort Hotel" ...
+ $ is_canceled                   : int  0 0 0 0 0 0 0 0 1 1 ...
+ $ lead_time                     : int  342 737 7 13 14 14 0 9 85 75 ...
+ $ arrival_date_year             : int  2015 2015 2015 2015 2015 2015 2015 2015 2015 2015 ...
+ $ arrival_date_month            : chr  "July" "July" "July" "July" ...
+ $ arrival_date_week_number      : int  27 27 27 27 27 27 27 27 27 27 ...
+ $ arrival_date_day_of_month     : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ stays_in_weekend_nights       : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ stays_in_week_nights          : int  0 0 1 1 2 2 2 2 3 3 ...
+ $ adults                        : int  2 2 1 1 2 2 2 2 2 2 ...
+ $ children                      : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ babies                        : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ meal                          : chr  "BB" "BB" "BB" "BB" ...
+ $ country                       : chr  "PRT" "PRT" "GBR" "GBR" ...
+ $ market_segment                : chr  "Direct" "Direct" "Direct" "Corporate" ...
+ $ distribution_channel          : chr  "Direct" "Direct" "Direct" "Corporate" ...
+ $ is_repeated_guest             : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ previous_cancellations        : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ previous_bookings_not_canceled: int  0 0 0 0 0 0 0 0 0 0 ...
+ $ reserved_room_type            : chr  "C" "C" "A" "A" ...
+ $ assigned_room_type            : chr  "C" "C" "C" "A" ...
+ $ booking_changes               : int  3 4 0 0 0 0 0 0 0 0 ...
+ $ deposit_type                  : chr  "No Deposit" "No Deposit" "No Deposit" "No Deposit" ...
+ $ agent                         : chr  "NULL" "NULL" "NULL" "304" ...
+ $ company                       : chr  "NULL" "NULL" "NULL" "NULL" ...
+ $ days_in_waiting_list          : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ customer_type                 : chr  "Transient" "Transient" "Transient" "Transient" ...
+ $ adr                           : num  0 0 75 75 98 ...
+ $ required_car_parking_spaces   : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ total_of_special_requests     : int  0 0 0 0 1 1 0 1 1 0 ...
+ $ reservation_status            : chr  "Check-Out" "Check-Out" "Check-Out" "Check-Out" ...
+ $ reservation_status_date       : chr  "2015-07-01" "2015-07-01" "2015-07-02" "2015-07-02" ...</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hotel) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+# Groups:   hotel [2]
+  hotel            n
+  &lt;chr&gt;        &lt;int&gt;
+1 City Hotel   79330
+2 Resort Hotel 40060</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hotel) <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"Number of Bookings"</span> <span class="ot">=</span> <span class="st">"n"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+# Groups:   hotel [2]
+  hotel        `Number of Bookings`
+  &lt;chr&gt;                       &lt;int&gt;
+1 City Hotel                  79330
+2 Resort Hotel                40060</code></pre>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

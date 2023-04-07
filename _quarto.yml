@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "R Workshop VDS 2023 Website"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - Syntax.qmd
+      - Survey.qmd
+      - Visualizations.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+
