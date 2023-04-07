@@ -8,6 +8,6 @@ You can also find the original code in the form of qmd files: *Syntax.qmd*, *Sur
 
 Colab Links:
 
-- Syntax: 
-- Surveys: 
-- Visualizations:
+- Syntax: https://colab.research.google.com/drive/1d31zwTMKmWMbWLsJFyYLAkNaiYCumzwL?usp=sharing
+- Surveys: https://colab.research.google.com/drive/1JIhzADRFq1UB9vevVnt_IhAzzJN3yqqu?usp=sharing
+- Visualizations: https://colab.research.google.com/drive/1cvkNsDH2Eb0fQk6qpMxz70yMixMgXlcx?usp=sharing
