@@ -23,15 +23,71 @@
   {
     "objectID": "Survey.html",
     "href": "Survey.html",
-    "title": "R Workshop - Survey",
+    "title": "Survey",
     "section": "",
     "text": "Loading in the dataset\n\n\nCode\ndf <- read_csv(\"R Workshop Survey.csv\")\n\nhead(df)\n\n\n# A tibble: 6 × 4\n  Timestamp                  Username               How often do you e…¹ What …²\n  <chr>                      <chr>                  <chr>                <chr>  \n1 2023/02/21 12:19:20 PM AST mkamarapu@umass.edu    Rarely               Public…\n2 2023/02/21 12:19:29 PM AST mkamarapu@umass.edu    Sometimes            Public…\n3 2023/02/21 12:19:36 PM AST mkamarapu@umass.edu    Never                Walking\n4 2023/02/21 12:19:48 PM AST mkamarapu@umass.edu    Rarely               Other  \n5 2023/02/21 12:59:02 PM AST niyatisharma@umass.edu Rarely               Walking\n6 2023/02/21 12:59:15 PM AST niyatisharma@umass.edu Sometimes            Driving\n# … with abbreviated variable names ¹​`How often do you exercise?`,\n#   ²​`What is your primary mode of transportation to work?`\n\n\n\n\nViz 1\n\n\nCode\nA <- df %>%\n  group_by(`How often do you exercise?`) %>%\n  count() %>%\n  ggplot(aes(y = n, x = `How often do you exercise?`, fill = `How often do you exercise?`)) + \n  geom_bar(position = \"dodge\", stat = \"identity\") +\n  ggtitle(\"How often do you exercise?\") +\n  xlab(\"Frequency on weekly basis\") +\n  ylab(\"Count\") +\n  theme_classic() +\n  guides(fill = \"none\")\nggplotly(A)\n\n\n\n\n\nFigure 1: Frequency count of Each Category\n\n\n\n\n\nViz 2\n\n\nCode\ndf %>% \n  group_by(`What is your primary mode of transportation to work?`) %>%\n  count() %>% \n  ggplot(aes(x = \"\", y = n, fill = as.factor(`What is your primary mode of transportation to work?`))) +\n  geom_bar(stat = \"identity\", width = 1) +\n  coord_polar(\"y\", start = 0) +\n  labs(title = \"What is your primary mode of transportation to work?\") +\n  scale_fill_viridis_d() +\n  theme_void() +\n  geom_text(aes(label = paste0(round((n/sum(n))*100), \"%\")), position = position_stack(vjust = 0.5)) +\n  guides(fill = guide_legend(title = \"Transportation way\"))\n\n\n\n\n\nFigure 2: Showing percentage of people using a particular transport"
   },
   {
     "objectID": "Visualizations.html",
     "href": "Visualizations.html",
-    "title": "R Workshop - Visualizations",
+    "title": "Visualizations",
     "section": "",
     "text": "Viz 1\nWith Figure 1 we explore relplot (relation plot) by using scatter chart to explore how the relationship between GDP and Life Expetancy has changed over the years.\n\n\nCode\n# Make a ggplot, but add frame=year: one image per year\nmyPlot <- ggplot(\n  gapminder, \n  aes(gdpPercap, lifeExp, size = pop, color = continent)\n  ) +\n  geom_point() +\n  scale_x_log10() +\n  theme_bw() +\n  # gganimate specific bits:\n  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +\n  transition_time(year) +\n  ease_aes('linear')\n\n# Save as gif:\ngganimate::animate(\n  myPlot,\n  duration = 5, \n  fps = 20,\n  width = 600,\n  height = 300,\n  renderer = gifski_renderer()\n  )\nanim_save(\"271-ggplot2-animated-gif-chart-with-gganimate1.gif\")\n\n\n\n\n\nFigure 1: Relationship between life expectancy and GDP from the year 1952 to 2007\n\n\n\n\n\n\nViz 2\nWe can also plot using 3 axes (Figure 2 ) for datasets where all three points (x, y and z) represent only one value.\n\n\nCode\n# Data: volcano is provided by plotly\n\n# Plot\np <- plot_ly(z = volcano, type = \"surface\")\np \n\n\n\n\n\nFigure 2: Maunga Whau (Mt Eden) is one of about 50 volcanos in the Auckland volcanic field. This data set gives topographic information for Maunga Whau on a 10m by 10m grid.\n\n\n\n\n\nViz 3\nHere is an example showing the distribution of the night price of AirBnB appartements in the south of France. Price range is divided per 10 euros interval. For example, there are slightly less than 750 appartements with a night price between 100 and 110 euros:\n\n\nCode\n# Load dataset from github\ndata <- read.table(\"https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/1_OneNum.csv\", header=TRUE)\n\nsummary(data)\n\n\n     price        \n Min.   :   11.0  \n 1st Qu.:   69.0  \n Median :  103.0  \n Mean   :  179.4  \n 3rd Qu.:  172.0  \n Max.   :17242.0  \n\n\nsource: holtzy/data_to_viz\nNow on the basis of this we can plot a histogram to see how often a particular price occurs in the dataset (while ignoring the outliers) Figure 3.\n\n\nCode\n# Plotting the dataset\np <- data %>%\n  filter( (price >= 69) & (price <= 172) ) %>% # Let's keep it between the 1st and                                                # 3rd quartile \n  ggplot( aes(x=price)) +\n    geom_histogram( binwidth=10, fill=\"#69b3a2\", color=\"#e9ecef\", alpha=0.9) +\n    ggtitle(\"Bin size = 10\") +\n    theme_ipsum() +\n    theme(\n      plot.title = element_text(size=15)\n    )\nggplotly(p)\n\n\n\n\n\nFigure 3: Frequency count to check bnbs avaiable at different price points in South of France\n\n\n\n\n\nViz 4\nPie Chart is also something which is very useful to show per cent of the whole. In the visualization below (Figure 4 ) we create a Mock Dataset with labels: Massachusetts, New york, California, and Texas.\n\n\nCode\n#Creating the Dataset\nx <- c(59, 62, 58, 282)\nlabels <-  c(\"Massachusetts\",\"New York\",\"Calfornia\",\"Texas\")\n\n#Calculation Percentage\npiepercent<- round(100*x/sum(x), 1) # Round up is a good practice as it helps in                                       # keeping the significance level constant                                          # throughout a project\n\n# Plotting the chart\npie(\n  x,\n  labels = piepercent,\n  main = \"City pie chart\",\n  col = rainbow(length(x))\n  )\n# Specifying the legend\nlegend(\n  \"topright\", \n  c(\"Massachusetts\",\"New York\",\"Calfornia\",\"Texas\"),\n  cex = 0.8,\n  fill = rainbow(length(x))\n  )\n\n\n\n\n\nFigure 4: Pie Chart showing percentage of each category"
+  },
+  {
+    "objectID": "Challenges/challenge1.html",
+    "href": "Challenges/challenge1.html",
+    "title": "Challenge 1 Instructions",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "Challenges/challenge1.html#challenge-overview",
+    "href": "Challenges/challenge1.html#challenge-overview",
+    "title": "Challenge 1 Instructions",
+    "section": "Challenge Overview",
+    "text": "Challenge Overview\nToday’s challenge is to\n\nread in a dataset, and\ndescribe the dataset using both words and any supporting information (e.g., tables, etc)"
+  },
+  {
+    "objectID": "Challenges/challenge1.html#read-in-the-data",
+    "href": "Challenges/challenge1.html#read-in-the-data",
+    "title": "Challenge 1 Instructions",
+    "section": "Read in the Data",
+    "text": "Read in the Data\nRead the following data set, using the correct R package and command.\n\nbirds.csv\n\n\n\n\nAdd any comments or documentation as needed."
+  },
+  {
+    "objectID": "Challenges/challenge1.html#describe-the-data",
+    "href": "Challenges/challenge1.html#describe-the-data",
+    "title": "Challenge 1 Instructions",
+    "section": "Describe the data",
+    "text": "Describe the data\nUsing a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data)."
+  },
+  {
+    "objectID": "Challenges/challenge2.html",
+    "href": "Challenges/challenge2.html",
+    "title": "Challenge 2",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "Challenges/challenge2.html#challenge-overview",
+    "href": "Challenges/challenge2.html#challenge-overview",
+    "title": "Challenge 2",
+    "section": "Challenge Overview",
+    "text": "Challenge Overview\nToday’s challenge is to\n\nread in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)\nprovide summary statistics for different interesting groups within the data, and interpret those statistics\n\n\n\n\nAdd any comments or documentation as needed. More challenging data may require additional code chunks and documentation."
+  },
+  {
+    "objectID": "Challenges/challenge2.html#describe-the-data",
+    "href": "Challenges/challenge2.html#describe-the-data",
+    "title": "Challenge 2",
+    "section": "Describe the data",
+    "text": "Describe the data\nUsing a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables."
+  },
+  {
+    "objectID": "Challenges/challenge2.html#provide-grouped-summary-statistics",
+    "href": "Challenges/challenge2.html#provide-grouped-summary-statistics",
+    "title": "Challenge 2",
+    "section": "Provide Grouped Summary Statistics",
+    "text": "Provide Grouped Summary Statistics\nConduct some exploratory data analysis, using dplyr commands such as group_by(), select(), filter(), and summarise(). Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set."
   }
 ]
